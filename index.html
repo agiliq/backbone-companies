@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>index</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Shabda Raaj">
+	
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0.beta6/handlebars.min.js">
+	</script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+	</script>
+    
+	<script type="text/javascript" src="https://raw.github.com/documentcloud/underscore/master/underscore.js">
+	</script>
+	
+	
+	<script type="text/javascript" src="https://raw.github.com/documentcloud/backbone/master/backbone.js">
+	</script>
+	
+	
+	<script type="text/javascript">
+	    $(document).ready(function(){
+    	    var Company = Backbone.Model.extend();
+    	    var source = $("#company").html();
+    	    var CompanyList = Backbone.View.extend({
+    	        
+    	        template: Handlebars.compile(source),
+
+
+    	        render: function(){
+    	         alert(this.model.toJSON());
+    	         this.$el.html(this.template(this.model.toJSON()));
+    	         $("#app").html(this.$el.html());
+    	         return this;
+    	       },
+    	       
+    	       initialize: function() {
+                 this.model.bind('change', this.render, this);
+               },
+    	    });
+
+    	    agiliq = new Company({name: "Agiliq"});
+    	    var company_list = new CompanyList({model: agiliq});
+	        
+	    });
+	    
+	</script>
+	<!-- Date: 2012-06-06 -->
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+    <script type="text/template" id="company">
+        {{name}}
+    </script>
+
+</body>
+</html>
