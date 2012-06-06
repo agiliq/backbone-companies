@@ -24,14 +24,12 @@
 	<script type="text/javascript">
 	    $(document).ready(function(){
     	    var Company = Backbone.Model.extend();
-    	    var source = $("#company").html();
     	    var CompanyList = Backbone.View.extend({
     	        
-    	        template: Handlebars.compile(source),
+    	        template: Handlebars.compile($("#company").html()),
 
 
     	        render: function(){
-    	         alert(this.model.toJSON());
     	         this.$el.html(this.template(this.model.toJSON()));
     	         $("#app").html(this.$el.html());
     	         return this;
@@ -39,6 +37,7 @@
     	       
     	       initialize: function() {
                  this.model.bind('change', this.render, this);
+                 this.render();
                },
     	    });
 
