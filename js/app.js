@@ -20,30 +20,33 @@ $(document).ready(function(){
                         }
                         
                            });
-    var CompanyList = Backbone.View.extend({
+    var CompanyView = Backbone.View.extend({
+        el: $("div#app"),
+        //tagName: "div",
+        //className: "company",
         
         template: Handlebars.compile($("#company").html()),
         render: function(){
          this.$el.html(this.template(this.model.toJSON()));
-         $("#app").html(this.$el.html());
+         //$("body").html(this.$el);
          return this;
        },
        initialize: function() {
+           console.log(this.el);
             this.model.bind('change', this.render, this);
             this.render();
           },
        events: {
-           "click ": "givePoints"
+           "click #givePoints": "givePoints"
        },
        givePoints: function(){
-           alert(10);
            this.model.givePoints();
        },
        
        
     });
     agiliq = new Company({name: names[0][0], score: names[0][1]});
-    agiliq_view = new CompanyList({model: agiliq});
+    agiliq_view = new CompanyView({model: agiliq, });
     
     for (var i; i < names.length; i++){
         //var company = new Company({name: names[i][0]});
@@ -51,4 +54,4 @@ $(document).ready(function(){
     }
     
     
-});
+}  );
