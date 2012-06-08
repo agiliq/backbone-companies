@@ -21,30 +21,8 @@
 	</script>
 	
 	
-	<script type="text/javascript">
-	    $(document).ready(function(){
-    	    var Company = Backbone.Model.extend();
-    	    var CompanyList = Backbone.View.extend({
-    	        
-    	        template: Handlebars.compile($("#company").html()),
-
-
-    	        render: function(){
-    	         this.$el.html(this.template(this.model.toJSON()));
-    	         $("#app").html(this.$el.html());
-    	         return this;
-    	       },
-    	       
-    	       initialize: function() {
-                 this.model.bind('change', this.render, this);
-                 this.render();
-               },
-    	    });
-
-    	    agiliq = new Company({name: "Agiliq"});
-    	    var company_list = new CompanyList({model: agiliq});
-	        
-	    });
+	<script type="text/javascript" src="js/app.js">
+	    
 	    
 	</script>
 	<!-- Date: 2012-06-06 -->
@@ -54,8 +32,10 @@
         
     </div>
     <script type="text/template" id="company">
-        {{name}}
+        {{name}} - {{score}}
+        <input type="button" id="givePoints" value="Give 5 points" />
     </script>
+    
 
 </body>
 </html>
